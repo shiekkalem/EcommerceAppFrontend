@@ -1,0 +1,33 @@
+{
+  "name": "ecommerceshopfrontendd-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ecommerceshopfrontendd-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/ecommerceshopfrontendd-e2e/cypress.config.ts",
+        "devServerTarget": "ecommerceshopfrontendd:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "ecommerceshopfrontendd:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "ecommerceshopfrontendd:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ecommerceshopfrontendd-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["ecommerceshopfrontendd"]
+}
